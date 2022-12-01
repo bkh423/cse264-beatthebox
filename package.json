@@ -1,0 +1,19 @@
+{
+  "name": "cse264-beatthebox",
+  "version": "1.0.0",
+  "description": "A betting game for users - presented with 3x3 grid of cards ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkh423/cse264-beatthebox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bkh423/cse264-beatthebox/issues"
+  },
+  "homepage": "https://github.com/bkh423/cse264-beatthebox#readme"
+}
