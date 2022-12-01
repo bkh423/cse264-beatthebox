@@ -1,0 +1,76 @@
+#titleSection {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+#gridDisplay {
+    float:left;
+    width: 60%;
+}
+#rightCol {
+    width:40%;
+    float:right;
+    text-align: left;
+    color:red;
+    font-weight: bold;
+}
+
+#navBar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: lightgray;
+}
+p {
+    color: black;
+    text-align: center;
+}
+
+li {
+  float: left;
+}
+
+#currUser {
+    color: red;
+}
+
+li a , li p{
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .howTo:hover #instruct {
+  background-color: rgb(218, 157, 157);
+  display: inline-block;
+}
+
+/* within the instruction*/
+.instructions {
+  display: none;
+  position: absolute;
+  background-color: lightgray;
+  text-align: center;
+  padding-right:10px;
+  padding-left:10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* body of the instructions*/
+#formInstruct {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: block;
+    color: black;
+    text-align: center;
+}
+
+.howTo:hover .instructions {
+  display: block;
+}
+

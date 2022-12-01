@@ -1,14 +1,46 @@
-<!--Bridget Hartman bkh423@lehigh.edu-->
-<!--ajax calls and web sockets to communicate with the server-->
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <title>Beat the Box</title>
 </head>
 <body>
+  <div id="titleSection">
+    <div class="navBar">
+      <ul id="navBar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#viewUsers">View Users</a></li>
+        <li class="howTo">
+          <a href="javascript:void(0)" id="instruct">How to play?</a>
+          <div class="instructions">
+            <p>Instructions will go here</p>
+          </div>
+        </li>
+        <li><p id="currUser"></p></li>
+      </ul>
+    </div>
+    <h1>Beat the Box</h1>
+    <div id="login">
+      <label>Enter your name: </label>
+      <input type="text" id="userLog">
+      <button id="logBut">login</button>
+    </div>
+  </div>
+  <div id="gridDisplay">
+    <h3>card grid will go here</h3>
+  </div>
+  <div id="rightCol">
+    <br><br>
+      <label id="betText">Choose your bet: </label>
+      <button id ="betLower">lower</button>
+      <button id ="betHigher">higher</button>
+  </div>
+
+
+
+
   <script src="js/jquery-1.8.1.min.js"></script>
   <script src="script.js"></script>
 </body>
