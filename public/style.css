@@ -1,18 +1,20 @@
 #titleSection {
     text-align: center;
-    color: red;
+    color: black;
     font-weight: bold;
+    background-color: rgb(39, 100, 39);
 }
 #gridDisplay {
     float:left;
-    width: 60%;
+    width: 70%;
 }
 #rightCol {
-    width:40%;
+    width:25%;
     float:right;
     text-align: left;
-    color:red;
+    color:black;
     font-weight: bold;
+    margin: 3px;
 }
 
 #navBar {
@@ -23,6 +25,7 @@
   text-align: center;
   background-color: lightgray;
 }
+
 p {
     color: black;
     text-align: center;
@@ -73,4 +76,15 @@ li a:hover, .howTo:hover #instruct {
 .howTo:hover .instructions {
   display: block;
 }
+h1 {
+  padding-bottom: 5px;
+}
 
+.card {
+  width: 200px;
+  height: 260px;
+}
+
+#gridDisplay {
+  background-color: rgb(39, 100, 39);
+}
