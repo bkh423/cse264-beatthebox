@@ -2,19 +2,11 @@
     text-align: center;
     color: black;
     font-weight: bold;
-    background-color: rgb(39, 100, 39);
+    background-color: rgb(83, 169, 83);
 }
 #gridDisplay {
-    float:left;
-    width: 70%;
-}
-#rightCol {
-    width:25%;
-    float:right;
-    text-align: left;
-    color:black;
-    font-weight: bold;
-    margin: 3px;
+    text-align: center;
+    background-color:  rgb(83, 169, 83);
 }
 
 #navBar {
@@ -26,6 +18,11 @@
   background-color: lightgray;
 }
 
+#gameSig {
+  text-align: center;
+  color: black;
+  font-size: 30px;
+}
 p {
     color: black;
     text-align: center;
@@ -81,10 +78,6 @@ h1 {
 }
 
 .card {
-  width: 200px;
-  height: 260px;
-}
-
-#gridDisplay {
-  background-color: rgb(39, 100, 39);
+  width: 170px;
+  height: 225px;
 }

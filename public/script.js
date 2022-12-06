@@ -1,6 +1,4 @@
 let userSubmit = document.getElementById("logBut");
-let betLow = document.getElementById("betLower");
-let betHigh = document.getElementById("betHigher");
 let username, card;
 let cardDeck = [];
 let displaySet, checkSet, cardList = [];
@@ -121,16 +119,6 @@ userSubmit.addEventListener("click", function getUserName(event) {
     dispUser.innerHTML = 'Current user: ' + username;
     let divApp = document.getElementById("navBar");
     divApp.append(dispUser);
-    let removeDiv = document.getElementById('login');
-    removeDiv.setAttribute('visibility', 'hidden');
     window.alert("Login success!");
-});
-
-betLow.addEventListener("click", function chooseLower(event) {
 
 });
-
-betHigh.addEventListener("click", function chooseHigher(event) {
-
-});
-
