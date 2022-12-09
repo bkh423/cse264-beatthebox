@@ -19,25 +19,33 @@
             <p>Instructions will go here</p>
           </div>
         </li>
-        <li><p id="currUser"></p></li>
+        <li class="currentLog">
+          <a href="javascript:void(0)" id="loggingIn">Current User</a>
+          <div class="currentUser" id="currentUser2"></div>
+        </li>
+        <li id = 'loginSub'>
+          <p> Enter your name: </p>
+          <input type="text" id="userLog">
+          <button id="logBut">login</button>
+        </li>
       </ul>
     </div>
     <h1>Beat the Box</h1>
-    <div id="login">
-      <label>Enter your name: </label>
-      <input type="text" id="userLog">
-      <button id="logBut">login</button>
-    </div>
-    <br><br>
     <div id="gameSig">
       <label id="betText">Choose your bet: </label>
-      <button id ="betLower">lower</button>
-      <button id ="betHigher">higher</button>
+      <button id ="betLower" class="betBut">lower</button>
+      <button id ="betHigher" class="betBut">higher</button>
     </div>
+    <br><br>
   </div>
-  <div id="gridDisplay">
-    <table id="9grid"></table>
+  <div class="leftCol" id="divDisplay">
+    <table>
+      <tbody id="displayGrid"></tbody>
+    </table>
     <br><br><br>
+  </div>
+  <div class="rightCol">
+    <img src="./images/cardBack.png" id="back">
   </div>
 
 

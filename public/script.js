@@ -1,14 +1,14 @@
 let userSubmit = document.getElementById("logBut");
+let cardSelect = document.getElementById("displayGrid");
 let username, card;
 let cardDeck = [];
-let displaySet, checkSet, cardList = [];
-loadCardList();
+loadCardDeck();
+
 /* IMAGES folder info:
     - named 'number''first letter of suite'.png
     - except 10: labeled with 1
     - face card + ace: labled with letter 
-*/
-
+        - ['d', 's', 'c', 'h']
 
 /* loading card deck into array
     - 1st index: card number 
@@ -27,7 +27,7 @@ loadCardList();
         - class: suit
 
 */
-function loadCardList(){ //adding all image elements to cardList array
+function loadCardDeck(){ //adding all image elements to cardList array
     for (let i = 1; i < 10; i++) {
         //loading SPADE
         let scard = document.createElement('img'); 
@@ -75,39 +75,61 @@ function loadCardList(){ //adding all image elements to cardList array
 
         //practice uploading images to the page
         console.log(scard,dcard,ccard,hcard);
-        let screen = document.getElementById('gridDisplay');
-        screen.append(hcard,ccard,dcard,scard);
+        //let screen = document.getElementById('displayGrid');
+        //screen.append(hcard,ccard,dcard,scard);
+        cardDeck.push(scard,dcard,hcard,ccard);
         scard,dcard,ccard,hcard = null;
     }
-    //loading ace, king, queen, and jack
-
-    let char = '';
-    switch(char) {
-        case 'a':
-        case 'j':
-        case 'q':
-        case 'k':
-    }
-
+    loadFace(cardDeck, 'a');
+    loadFace(cardDeck, 'j');
+    loadFace(cardDeck, 'q');
+    loadFace(cardDeck, 'k');
+    printGrid(cardDeck);
 };
-/*
-function loadGrid(displaySet) { //loading an array of images onto screen 
-    $("#displayGrid").empty();
-    //need to start with 3 ROWS --> each with 3 columns
-    for (let i = 0; i < displaySet.length; i=i+3) { //CREATE THREE ROWS, but need to make sure index matches the indeces in displaySet(orig 12)
-        let dispRow = document.createElement('tr');
-        for(let j = 0; j < 3; j++) { //CREATE THREE COLUMNS
-            let imgInd = i + j;
-            let fromCard = cardDeck[displaySet[imgInd]];
-            let newCell = document.createElement('td');
-            newCell.setAttribute('class', 'card');
-            newCell.append(fromCard);
-            dispRow.append(newCell);
+
+function loadFace(cardDeck, char) {
+    let checkFaceSuit = ['s','d','c','h'];
+    if(char =='a') {
+        for (let i = 0; i < 4; i++) {
+            let newCard = document.createElement('img');
+            newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
+            newCard.setAttribute('class','card');
+            console.log(newCard);
+            cardDeck.push(newCard);
+            newCard='';
         }
-        $("#displayGrid").append(dispRow);
     }
-};
-*/
+    else if (char == 'j') {
+        for (let i = 0; i < 4; i++) {
+            let newCard = document.createElement('img');
+            newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
+            newCard.setAttribute('class','card');
+            console.log(newCard);
+            cardDeck.push(newCard);
+            newCard='';
+        }
+    }
+    else if (char == 'q') {
+        for (let i = 0; i < 4; i++) {
+            let newCard = document.createElement('img');
+            newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
+            newCard.setAttribute('class','card');
+            console.log(newCard);
+            cardDeck.push(newCard);
+            newCard='';
+        }
+    }
+    else if (char == 'k') {
+        for (let i = 0; i < 4; i++) {
+            let newCard = document.createElement('img');
+            newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
+            newCard.setAttribute('class','card');                    
+            console.log(newCard);
+            cardDeck.push(newCard);
+            newCard='';
+        } 
+    }
+}
 
 userSubmit.addEventListener("click", function getUserName(event) {
     event.preventDefault(); //prevent page reload
@@ -115,10 +137,55 @@ userSubmit.addEventListener("click", function getUserName(event) {
     username = newUser.value;
     console.log(username);
     newUser.value = '';
-    let dispUser = document.getElementById("currUser");
-    dispUser.innerHTML = 'Current user: ' + username;
-    let divApp = document.getElementById("navBar");
-    divApp.append(dispUser);
+    let dispUser = document.createElement('p');
+    dispUser.setAttribute('id', 'currUser');
+    let classUser = document.getElementById("currentUser2");
+    dispUser.innerHTML = username;
+    classUser.append(dispUser);
     window.alert("Login success!");
+});
 
+function printGrid(cardDeck) { //loading an array of images onto screen 
+let dispGrid = document.getElementById("displayGrid");
+    dispGrid.empty;
+    //need to start with 3 ROWS --> each with 3 columns
+    for (let i = 0; i < 9; i=i+3) { //CREATE THREE ROWS, but need to make sure index matches the indeces in displaySet(orig 12)
+        let dispRow = document.createElement('tr');
+        for(let j = 0; j < 3; j++) { //CREATE THREE COLUMNS
+            let chooseRand = Math.floor(Math.random() * 52);
+            console.log(chooseRand);
+            //CHECK FOR REPEATS
+            let cellCard = cardDeck[chooseRand];
+            console.log(cellCard);
+
+            let newCell = document.createElement('td');
+            newCell.setAttribute('class', 'card');
+            newCell.append(cellCard);
+            dispRow.append(newCell);
+        }
+        dispGrid.append(dispRow);
+    }
+    /*for (let i = 0; i < 9; i=i++) { //CREATE THREE ROWS, but need to make sure index matches the indeces in displaySet(orig 12)
+        let dispRow = document.createElement('tr');
+        for(let j = 0; j < 3; j++) { //CREATE THREE COLUMNS
+            let fromCard = cardDeck[i];
+            let newCell = document.createElement('td');
+            newCell.setAttribute('class', 'card');
+            newCell.append(fromCard);
+            dispRow.append(newCell);
+        }
+       toEmpty.append(dispRow);
+    }
+    */
+};
+
+cardSelect.addEventListener("click", function selectCard(e) {
+    let currSelect = e.target;
+    console.log(currSelect.className);
+    if (currSelect.className == 'selected') {
+        currSelect.setAttribute('class', 'card');
+    }
+    else {
+        currSelect.setAttribute('class','selected');
+    }
 });
