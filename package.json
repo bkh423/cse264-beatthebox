@@ -1,0 +1,23 @@
+{
+  "name": "cse264-beatthebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkh423/cse264-beatthebox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bkh423/cse264-beatthebox/issues"
+  },
+  "homepage": "https://github.com/bkh423/cse264-beatthebox#readme",
+  "dependencies": {
+    "jquery": "^3.6.1",
+    "jsdom": "^20.0.3"
+  }
+}

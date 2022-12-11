@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<head>
+    <link rel="stylesheet" href="styles.css"></style>
+</head>
+<body>
+    <label class="switch">
+        <input type="checkbox" id="switch">
+        <span class="slider round"></span>
+    </label>
+    <div class="box" id="z0" onclick="executeTurn(0, 0)"></div>
+    <div class="box" id="z1" onclick="executeTurn(0, 1)"></div>
+    <div class="box" id="z2" onclick="executeTurn(0, 2)"></div>
+    <div class="box" id="o0" onclick="executeTurn(1, 0)"></div>
+    <div class="box" id="o1" onclick="executeTurn(1, 1)"></div>
+    <div class="box" id="o2" onclick="executeTurn(1, 2)"></div>
+    <div class="box" id="t0" onclick="executeTurn(2, 0)"></div>
+    <div class="box" id="t1" onclick="executeTurn(2, 1)"></div>
+    <div class="box" id="t2" onclick="executeTurn(2, 2)"></div>
+
+    <div class="deck" id="deckcounter"></div>
+
+    <script src="backend.js"></script>
+</body>
