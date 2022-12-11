@@ -3,24 +3,25 @@ div {
 }
 
 .leftCol {
-  width: 70%;
   text-align: center;
   float: left;
   padding-left: 40px;
 }
 
-.rightCol {
-  float: right;
-  width:25%;
-  padding-right: 30px;
-  padding-bottom: inherit;
-}
-
-#titleSection, #displayGrid {
+#titleSection, #displayGrid, #divdisplay {
     text-align: center;
     color: black;
     font-weight: bold;
     background-color: rgb(83, 169, 83);
+}
+
+#displayGrid {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  background-color: rgb(83, 169, 83);
+  float: left;
+  padding-left: 50px;
 }
 
 #loginSub {
@@ -30,6 +31,7 @@ div {
 
 #navBar, .navBar {
   list-style-type: none;
+  height: 60px;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -40,7 +42,7 @@ div {
 #gameSig {
   text-align: center;
   color: black;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 p {
@@ -56,7 +58,7 @@ li a , li p{
   display: inline-block;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px 20px;
   text-decoration: none;
 }
 
@@ -90,17 +92,16 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   display: block;
 }
 
-h1 {
-  padding-bottom: 5px;
-}
+
 #back {
-  width: 170px;
-  height: 225px;
+  width: 150px;
+  height: 215px;
+  padding-right: 25px;
   float: right;
 }
 .card {
-  width: 170px;
-  height: 225px;
+  width: 150px;
+  height: 215px;
   padding: 5px;
 }
 
@@ -111,8 +112,8 @@ h1 {
 }
 
 .betBut {
-  height:35px;
-  width: 70px;
+  height: 40px;
+  width: 80px;
   color: red;
   font-size: 15px;
   font-weight: bold;
