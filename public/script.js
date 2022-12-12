@@ -3,6 +3,7 @@ let betLow = document.getElementById("betLower");
 let betHigh = document.getElementById("betHigher");
 let cardSelect = document.getElementById("displayGrid");
 let deckCounter = document.getElementById("deckcounter");
+let resetButton = document.getElementById("reset");
 deckCounter.innerHTML = "Cards Remaining: 43";
 let username, card, currSelect, chooseNext;
 let betChoice = false;
@@ -23,9 +24,24 @@ $(document).ready(function() {
     cardSelect.onclick = handleSelect;
     betLow.onclick = handleLow;
     betHigh.onclick = handleHigh;
+    resetButton.onclick = handleReset;
 });
 
-
+function handleReset(){
+    //resetting variables and selections
+    for (i in deck){
+        deck[i].setAttribute('class','card');
+    }
+    currSelect = null;
+    betChoice = false;
+    lossCounter = 0;
+    deckInd = 9;
+    deck = shuffle(deck);
+    $('#displayGrid').empty();
+    printGrid(deck);
+    let remcards = 52 - deckInd;
+    deckCounter.innerHTML = "Cards Remaining: " + remcards;
+}
 
 /* IMAGES folder info:
     - named 'number''first letter of suite'.png
@@ -60,7 +76,7 @@ function loadCardDeck(){ //adding all image elements to cardList array
             scard.setAttribute('id',i + '0 of Spades');
         }
         else {
-            scard.setAttribute('id',i + 'of Spades');  
+            scard.setAttribute('id',i + ' of Spades');  
         }
 
         //loading DIAMOND
