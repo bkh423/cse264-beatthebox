@@ -188,7 +188,7 @@ function handleLow() {
     let valueNext = getVal(deck[deckInd].id);
     if (valueNext <= value) {
         //WON THE BET
-        window.alert("you won the bet -- keep going");
+        // window.alert("you won the bet -- keep going");
         betChoice = false;
         $(".selected").replaceWith(deck[deckInd]);
     }
@@ -216,7 +216,7 @@ function handleHigh() {
     let valueNext = getVal(deck[deckInd].id);
     if (valueNext >= value) {
         //WON THE BET
-        window.alert("you won the bet -- keep going");
+        // window.alert("you won the bet -- keep going");
         betChoice = false;
         $(".selected").replaceWith(deck[deckInd]);
     }
