@@ -2,6 +2,8 @@ let userSubmit = document.getElementById("logBut");
 let betLow = document.getElementById("betLower");
 let betHigh = document.getElementById("betHigher");
 let cardSelect = document.getElementById("displayGrid");
+let deckCounter = document.getElementById("deckcounter");
+deckCounter.innerHTML = "Cards Remaining: 43";
 let username, card, currSelect, chooseNext;
 let betChoice = false;
 let deck = [];
@@ -56,10 +58,10 @@ function loadCardDeck(){ //adding all image elements to cardList array
         scard.setAttribute('src', './images/' + i + 's.png'); 
         scard.setAttribute('class','card');
         if (i == 1) {
-            scard.setAttribute('id',i + '0s');
+            scard.setAttribute('id',i + '0 of Spades');
         }
         else {
-            scard.setAttribute('id',i + 's');  
+            scard.setAttribute('id',i + 'of Spades');  
         }
 
         //loading DIAMOND
@@ -67,10 +69,10 @@ function loadCardDeck(){ //adding all image elements to cardList array
         dcard.setAttribute('src', './images/' + i + 'd.png'); 
         dcard.setAttribute('class','card');
         if (i == 1) {
-            dcard.setAttribute('id',i + '0d');
+            dcard.setAttribute('id',i + '0 of Diamonds');
         }
         else {
-            dcard.setAttribute('id',i + 'd');  
+            dcard.setAttribute('id',i + ' of Diamonds');  
         }
 
         //loading CLUB
@@ -78,10 +80,10 @@ function loadCardDeck(){ //adding all image elements to cardList array
         ccard.setAttribute('src', './images/' + i + 'c.png'); 
         ccard.setAttribute('class','card');
         if (i == 1) {
-            ccard.setAttribute('id',i + '0c');
+            ccard.setAttribute('id',i + '0 of Clubs');
         }
         else {
-            ccard.setAttribute('id',i + 'c');  
+            ccard.setAttribute('id',i + ' of Clubs');  
         }
 
         //loading HEART
@@ -89,10 +91,10 @@ function loadCardDeck(){ //adding all image elements to cardList array
         hcard.setAttribute('src', './images/' + i + 'h.png');
         hcard.setAttribute('class','card');
         if (i == 1) {
-            hcard.setAttribute('id',i + '0h');
+            hcard.setAttribute('id',i + '0 of Hearts');
         }
         else {
-            hcard.setAttribute('id',i + 'h');  
+            hcard.setAttribute('id',i + ' of Hearts');  
         }
         //let screen = document.getElementById('displayGrid');
         //screen.append(hcard,ccard,dcard,scard);
@@ -111,11 +113,12 @@ function loadCardDeck(){ //adding all image elements to cardList array
 
 function loadFace(deck, char) {
     let checkFaceSuit = ['s','d','c','h'];
+    let suitName = [' of Spades',' of Diamonds',' of Clubs',' of Hearts'];
     if(char =='a') {
         for (let i = 0; i < 4; i++) {
             let newCard = document.createElement('img');
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
-            newCard.setAttribute('id', char + checkFaceSuit[i]);
+            newCard.setAttribute('id', "Ace" + suitName[i]);
             newCard.setAttribute('class','card');
             deck.push(newCard);
             newCard='';
@@ -126,7 +129,7 @@ function loadFace(deck, char) {
             let newCard = document.createElement('img');
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
             newCard.setAttribute('class','card');
-            newCard.setAttribute('id', char + checkFaceSuit[i]);
+            newCard.setAttribute('id', "Jack" + suitName[i]);
             deck.push(newCard);
             newCard='';
         }
@@ -135,7 +138,7 @@ function loadFace(deck, char) {
         for (let i = 0; i < 4; i++) {
             let newCard = document.createElement('img');
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
-            newCard.setAttribute('id', char + checkFaceSuit[i]);
+            newCard.setAttribute('id', "Queen" + suitName[i]);
             newCard.setAttribute('class','card');
             deck.push(newCard);
             newCard='';
@@ -145,7 +148,7 @@ function loadFace(deck, char) {
         for (let i = 0; i < 4; i++) {
             let newCard = document.createElement('img');
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
-            newCard.setAttribute('id', char + checkFaceSuit[i]);
+            newCard.setAttribute('id', "King" + suitName[i]);
             newCard.setAttribute('class','card');                    
             deck.push(newCard);
             newCard='';
@@ -188,14 +191,11 @@ function handleLow() {
         window.alert("you won the bet -- keep going");
         betChoice = false;
         $(".selected").replaceWith(deck[deckInd]);
-        if (deckInd >= 52){
-            window.alert("Congratulations, you have won!");
-        }
     }
     else {
         //flip stack over, show card back
         $(".selected").replaceWith(cardBack[lossCounter]);
-        window.alert("you lost the bet -- the next card " + deck[deckInd].id + " is higher");
+        window.alert("you lost the bet -- the next card - " + deck[deckInd].id + " - is higher");
         betChoice = false;
         lossCounter++;
         if (lossCounter >= 9){
@@ -204,6 +204,11 @@ function handleLow() {
     }
     currSelect = null;
     deckInd++;
+    let remcards = 52 - deckInd;
+    deckCounter.innerHTML = "Cards Remaining: " + remcards;
+    if (deckInd >= 52 && lossCounter < 9){
+        window.alert("Congratulations, you have won!");
+    }
 }
 
 function handleHigh() {
@@ -214,14 +219,11 @@ function handleHigh() {
         window.alert("you won the bet -- keep going");
         betChoice = false;
         $(".selected").replaceWith(deck[deckInd]);
-        if (deckInd >= 52){
-            window.alert("Congratulations, you have won!");
-        }
     }
     else {
         //flip stack over, show card back
         $(".selected").replaceWith(cardBack[lossCounter]);
-        window.alert("you lost the bet -- the next card " + deck[deckInd].id + " is lower");
+        window.alert("you lost the bet -- the next card - " + deck[deckInd].id + " - is lower");
         betChoice = false;
         lossCounter++;
         if (lossCounter >= 9){
@@ -230,6 +232,11 @@ function handleHigh() {
     }
     currSelect = null;
     deckInd++;
+    let remcards = 52 - deckInd;
+    deckCounter.innerHTML = "Cards Remaining: " + remcards;
+    if (deckInd >= 52 && lossCounter < 9){
+        window.alert("Congratulations, you have won!");
+    }
 }
 
 function getVal(idVal) {

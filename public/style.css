@@ -105,6 +105,11 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   padding: 5px;
 }
 
+#deckcounter{
+  float: right;
+  padding: 5px;
+}
+
 .flipped {
   width: 150px;
   height: 215px;
