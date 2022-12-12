@@ -16,7 +16,6 @@ loadFace(deck, 'j');
 loadFace(deck, 'q');
 loadFace(deck, 'k');
 deck = shuffle(deck);
-
 printGrid(deck);
 
 $(document).ready(function() {
@@ -181,6 +180,25 @@ function handleLogin(e) {
     dispUser.innerHTML = username;
     classUser.append(dispUser);
     window.alert("Login success!");
+    $.ajax(
+        "/winners",
+        {
+            type: "GET",
+            data: {
+            name: username,
+            wins: 0,
+            losses: 0
+            },
+            dataType: "text",
+            success: function (json) {
+                $("#players").html(json)
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error: " + jqXHR.responseText);
+            alert("Error: " + textStatus);
+            alert("Error: " + errorThrown);
+            }
+        });
 }
 
 function handleLow() {
@@ -199,6 +217,25 @@ function handleLow() {
         betChoice = false;
         lossCounter++;
         if (lossCounter >= 9){
+            $.ajax(
+                "/winners",
+                {
+                    type: "GET",
+                    data: {
+                    name: username,
+                    wins: 0,
+                    losses: 1
+                    },
+                    dataType: "text",
+                    success: function (json) {
+                        $("#players").html(json)
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Error: " + jqXHR.responseText);
+                    alert("Error: " + textStatus);
+                    alert("Error: " + errorThrown);
+                    }
+                });
             window.alert("You Lost!");
         }
     }
@@ -207,6 +244,25 @@ function handleLow() {
     let remcards = 52 - deckInd;
     deckCounter.innerHTML = "Cards Remaining: " + remcards;
     if (deckInd >= 52 && lossCounter < 9){
+        $.ajax(
+            "/winners",
+            {
+                type: "GET",
+                data: {
+                name: username,
+                wins: 1,
+                losses: 0
+                },
+                dataType: "text",
+                success: function (json) {
+                    $("#players").html(json)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                alert("Error: " + jqXHR.responseText);
+                alert("Error: " + textStatus);
+                alert("Error: " + errorThrown);
+                }
+            });
         window.alert("Congratulations, you have won!");
     }
 }
@@ -227,6 +283,25 @@ function handleHigh() {
         betChoice = false;
         lossCounter++;
         if (lossCounter >= 9){
+            $.ajax(
+                "/winners",
+                {
+                    type: "GET",
+                    data: {
+                    name: username,
+                    wins: 0,
+                    losses: 1
+                    },
+                    dataType: "text",
+                    success: function (json) {
+                        $("#players").html(json)
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Error: " + jqXHR.responseText);
+                    alert("Error: " + textStatus);
+                    alert("Error: " + errorThrown);
+                    }
+                });
             window.alert("You Lost!");
         }
     }
@@ -235,6 +310,25 @@ function handleHigh() {
     let remcards = 52 - deckInd;
     deckCounter.innerHTML = "Cards Remaining: " + remcards;
     if (deckInd >= 52 && lossCounter < 9){
+        $.ajax(
+            "/winners",
+            {
+                type: "GET",
+                data: {
+                name: username,
+                wins: 1,
+                losses: 0
+                },
+                dataType: "text",
+                success: function (json) {
+                    $("#players").html(json)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                alert("Error: " + jqXHR.responseText);
+                alert("Error: " + textStatus);
+                alert("Error: " + errorThrown);
+                }
+            });
         window.alert("Congratulations, you have won!");
     }
 }

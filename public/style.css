@@ -92,6 +92,18 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   display: block;
 }
 
+#players{
+  font-size: x-large;
+  margin-left: 27%;
+  border-style: solid;
+  border-color: black;
+  background-color: white;
+}
+
+#board{
+  padding: 10px;
+  border: 1px solid black;
+}
 
 #back {
   width: 150px;
@@ -103,6 +115,11 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   width: 150px;
   height: 215px;
   padding: 5px;
+}
+
+#leaderboard{
+  padding-left: 600px;
+  width: 20%;
 }
 
 #deckcounter{
