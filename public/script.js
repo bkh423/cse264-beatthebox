@@ -4,14 +4,18 @@ let betHigh = document.getElementById("betHigher");
 let cardSelect = document.getElementById("displayGrid");
 let username, card, currSelect, chooseNext;
 let betChoice = false;
-let cardDeck = []; //array of card deck
-let tracker = []; //keeps track of cards already loaded onto the page
+let deck = [];
+let lossCounter = 0;
+let cardBack = [];
+let deckInd = 9; // first 9 cards (0-8) used to create grid 
 loadCardDeck();
-loadFace(cardDeck, 'a');
-loadFace(cardDeck, 'j');
-loadFace(cardDeck, 'q');
-loadFace(cardDeck, 'k');
-printGrid(cardDeck,tracker);
+loadFace(deck, 'a');
+loadFace(deck, 'j');
+loadFace(deck, 'q');
+loadFace(deck, 'k');
+deck = shuffle(deck);
+
+printGrid(deck);
 
 $(document).ready(function() {
     userSubmit.onclick = handleLogin;
@@ -92,12 +96,20 @@ function loadCardDeck(){ //adding all image elements to cardList array
         }
         //let screen = document.getElementById('displayGrid');
         //screen.append(hcard,ccard,dcard,scard);
-        cardDeck.push(scard,dcard,hcard,ccard);
+        deck.push(scard,dcard,hcard,ccard);
         scard,dcard,ccard,hcard = null;
     }
+    //loading card back
+    for (let i = 0; i < 9; i++){
+        let back = document.createElement('img');
+        back.setAttribute('src', './images/cardBack.png'); 
+        back.setAttribute('class','flipped');
+        cardBack.push(back);
+    }
+    
 };
 
-function loadFace(cardDeck, char) {
+function loadFace(deck, char) {
     let checkFaceSuit = ['s','d','c','h'];
     if(char =='a') {
         for (let i = 0; i < 4; i++) {
@@ -105,7 +117,7 @@ function loadFace(cardDeck, char) {
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
             newCard.setAttribute('id', char + checkFaceSuit[i]);
             newCard.setAttribute('class','card');
-            cardDeck.push(newCard);
+            deck.push(newCard);
             newCard='';
         }
     }
@@ -115,7 +127,7 @@ function loadFace(cardDeck, char) {
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
             newCard.setAttribute('class','card');
             newCard.setAttribute('id', char + checkFaceSuit[i]);
-            cardDeck.push(newCard);
+            deck.push(newCard);
             newCard='';
         }
     }
@@ -125,7 +137,7 @@ function loadFace(cardDeck, char) {
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
             newCard.setAttribute('id', char + checkFaceSuit[i]);
             newCard.setAttribute('class','card');
-            cardDeck.push(newCard);
+            deck.push(newCard);
             newCard='';
         }
     }
@@ -135,11 +147,24 @@ function loadFace(cardDeck, char) {
             newCard.setAttribute('src', './images/' + char + checkFaceSuit[i] + '.png');
             newCard.setAttribute('id', char + checkFaceSuit[i]);
             newCard.setAttribute('class','card');                    
-            cardDeck.push(newCard);
+            deck.push(newCard);
             newCard='';
         } 
     }
 }
+
+function shuffle(array) {
+    let currentInd = array.length,  randomIndex;
+  
+    while (currentInd != 0) {
+      randomIndex = Math.floor(Math.random() * currentInd);
+      currentInd--;
+      [array[currentInd], array[randomIndex]] = [
+        array[randomIndex], array[currentInd]];
+    }
+    return array;
+  }
+
 
 function handleLogin(e) {
     e.preventDefault(); //prevent page reload
@@ -156,125 +181,87 @@ function handleLogin(e) {
 }
 
 function handleLow() {
-    //chooseNextCard();
-    let idVal = currSelect.id;
-    let value = idVal.charAt(0);  
-    switch (value) {
-        case '1':
-            value = 10;
-        case 'j':
-            value = 11;
-        case 'q':
-            value = 12;
-        case 'k':
-            value = 13;
-        case 'a':
-            value = 14;
-    }
-    let valueNext = chooseNextCard(tracker, cardDeck);
-    
+    let value = getVal(currSelect.id)
+    let valueNext = getVal(deck[deckInd].id);
     if (valueNext <= value) {
         //WON THE BET
         window.alert("you won the bet -- keep going");
         betChoice = false;
-        $(".selected").replaceWith(cardDeck[chooseNext]);
-        console.log($(".selected"));
-
+        $(".selected").replaceWith(deck[deckInd]);
+        if (deckInd >= 52){
+            window.alert("Congratulations, you have won!");
+        }
     }
     else {
-        window.alert("GAME OVER");
-        //GAME OVER
+        //flip stack over, show card back
+        $(".selected").replaceWith(cardBack[lossCounter]);
+        window.alert("you lost the bet -- the next card " + deck[deckInd].id + " is higher");
+        betChoice = false;
+        lossCounter++;
+        if (lossCounter >= 9){
+            window.alert("You Lost!");
+        }
     }
-    console.log("user is betting lower");
+    currSelect = null;
+    deckInd++;
 }
 
 function handleHigh() {
-    //chooseNextCard();
-    let idVal = currSelect.id;
-    let value = idVal.charAt(0);  
-    switch (value) {
-        case '1':
-            value = 10;
-        case 'j':
-            value = 11;
-        case 'q':
-            value = 12;
-        case 'k':
-            value = 13;
-        case 'a':
-            value = 14;
-    }
-    let valueNext = chooseNextCard(tracker, cardDeck);
+    let value = getVal(currSelect.id)
+    let valueNext = getVal(deck[deckInd].id);
     if (valueNext >= value) {
         //WON THE BET
         window.alert("you won the bet -- keep going");
         betChoice = false;
-        $(".selected").replaceWith(cardDeck[chooseNext]);
-        console.log($(".selected"));
+        $(".selected").replaceWith(deck[deckInd]);
+        if (deckInd >= 52){
+            window.alert("Congratulations, you have won!");
+        }
     }
     else {
-        window.alert("GAME OVER");
-        //GAME OVER
+        //flip stack over, show card back
+        $(".selected").replaceWith(cardBack[lossCounter]);
+        window.alert("you lost the bet -- the next card " + deck[deckInd].id + " is lower");
+        betChoice = false;
+        lossCounter++;
+        if (lossCounter >= 9){
+            window.alert("You Lost!");
+        }
     }
-    console.log("user is betting higher");
+    currSelect = null;
+    deckInd++;
 }
 
-function chooseNextCard(tracker, cardDeck) {
-    let fresh = true;
-
-    while(fresh) {
-        chooseNext = Math.floor(Math.random() * 52);
-        //DUPLICATE TRACKER
-        if(tracker.indexOf(chooseNext) == -1) {
-            tracker.push(chooseNext);
-            fresh = false;
-        }
-        else {
-            continue;
-        }
-    }
-    let idVal = cardDeck[chooseNext].id;
+function getVal(idVal) {
     let valueNext = idVal.charAt(0);  
     switch (valueNext) {
         case '1':
             valueNext = 10;
+            break;
         case 'j':
             valueNext = 11;
+            break;
         case 'q':
             valueNext = 12;
+            break;
         case 'k':
             valueNext = 13;
+            break;
         case 'a':
             valueNext = 14;
+            break;
     }
-    console.log(valueNext);
     return valueNext;
-    //should shuffle through deck to get next on top
 }
-function printGrid(cardDeck, tracker) { //loading an array of images onto screen 
+function printGrid(deck) { //loading an array of images onto screen 
 let dispGrid = document.getElementById("displayGrid");
     dispGrid.empty;
     //need to start with 3 ROWS --> each with 3 columns
     for (let i = 0; i < 9; i=i+3) { //CREATE THREE ROWS, but need to make sure index matches the indeces in displaySet(orig 12)
         let dispRow = document.createElement('tr');
         for(let j = 0; j < 3; j++) { //CREATE THREE COLUMNS
-            let chooseRand = Math.floor(Math.random() * 52);
             
-            //DUPLICATE TRACKER
-            if(tracker.indexOf(chooseRand) == -1) {
-                tracker.push(chooseRand);
-            }
-            else {
-                j--;
-                continue;
-            }
-
-            console.log(tracker);
-            //CHECK FOR REPEATS
-            let cellCard = cardDeck[chooseRand];
-            //console.log(cellCard, j);
-            //cardDeck.indexOf(cardDeck[chooseRand]);
-            //delete cardDeck[chooseRand];
+            let cellCard = deck[i + j];
 
             let newCell = document.createElement('td');
             newCell.setAttribute('class', 'card');
@@ -288,15 +275,21 @@ let dispGrid = document.getElementById("displayGrid");
 
 function handleSelect(event) {
     currSelect = event.target;
-    if (currSelect.className == 'selected') {
+    if (currSelect.className == 'flipped'){
+        currSelect = null;
+        return;
+    }
+    else if (currSelect.className == 'selected') {
         currSelect.setAttribute('class', 'card');
+        currSelect = null;
         betChoice = false;
     }
     else if (currSelect.className == 'card' && betChoice == true) {
         window.alert("Another card is already selected. Please make a bet, or unselect the card to choose another.");
     }
-    else if(currSelect.className == 'card' && betChoice==false) {
+    else if(currSelect.className == 'card') {
         currSelect.setAttribute('class','selected');
         betChoice = true;
     }
+    console.log(currSelect);
 }
