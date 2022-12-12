@@ -339,16 +339,16 @@ function getVal(idVal) {
         case '1':
             valueNext = 10;
             break;
-        case 'j':
+        case 'J':
             valueNext = 11;
             break;
-        case 'q':
+        case 'Q':
             valueNext = 12;
             break;
-        case 'k':
+        case 'K':
             valueNext = 13;
             break;
-        case 'a':
+        case 'A':
             valueNext = 14;
             break;
     }
