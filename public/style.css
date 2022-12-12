@@ -1,4 +1,4 @@
-div {
+body {
   background-color: rgb(83, 169, 83);
 }
 
@@ -16,6 +16,7 @@ div {
 }
 
 #displayGrid {
+  position: absolute;
   text-align: center;
   color: black;
   font-weight: bold;
@@ -92,6 +93,17 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   display: block;
 }
 
+#players{
+  font-size: x-large;
+  border-style: solid;
+  border-color: black;
+  background-color: white;
+}
+
+#board{
+  padding: 10px;
+  border: 1px solid black;
+}
 
 #back {
   width: 150px;
@@ -103,6 +115,12 @@ li a:hover, .howTo:hover #instruct, .currentLog:hover #loggingIn {
   width: 150px;
   height: 215px;
   padding: 5px;
+}
+
+#leaderboard{
+  position: absolute;
+  margin-left: 800px;
+  width: 30%
 }
 
 #deckcounter{
